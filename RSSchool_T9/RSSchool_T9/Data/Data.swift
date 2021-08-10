@@ -12,8 +12,10 @@ import UIKit
 extension String {
     static func from(_ file: String) -> String {
         guard let path = Bundle.main.path(forResource: file, ofType: "txt") else {
-            fatalError("LOL, be careful, drink some water")
+            fatalError("LOL, be careful, drink a water")
         }
+        // Здесь нет особой причины делать try!.
+        // Кроме одной: предупредить случайные удаления файлов в папке Static
         return try! String(contentsOfFile: path)
     }
 }
@@ -34,6 +36,7 @@ enum ContentType {
     case story(Story)
     case gallery(Gallery)
 }
+
 
 struct FillingData {
     static let data: [ContentType] = [
